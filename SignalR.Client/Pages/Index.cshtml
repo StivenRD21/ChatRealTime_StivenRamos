@@ -1,0 +1,32 @@
+﻿@page
+@inject IConfiguration Configuration
+@{
+    ViewData["Title"] = "SignalR Chat";
+    var hubBaseUrl = Configuration["HubBaseUrl"] ?? "https://localhost:7001";
+}
+
+<h1>Chat en tiempo real</h1>
+
+<div>
+    <label for="userInput">Usuario</label>
+    <input id="userInput" maxlength="40" />
+</div>
+
+<div>
+    <label for="messageInput">Mensaje</label>
+    <input id="messageInput" maxlength="1000" />
+</div>
+
+<button id="sendButton" disabled>
+    Enviar
+</button>
+
+<p id="status">Conectando...</p>
+
+<ul id="messagesList"></ul>
+
+<script>
+    window.HUB_BASE_URL = "@hubBaseUrl";
+</script>
+<script src="~/js/signalr/dist/browser/signalr.min.js"></script>
+<script src="~/js/chat.js"></script>
